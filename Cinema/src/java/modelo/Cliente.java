@@ -5,11 +5,14 @@
  */
 package modelo;
 
+import org.json.JSONObject;
+
 /**
  *
  * @author Gaby
  */
 public class Cliente {
+
     String id_cliente;
     String apellidos;
     String nombre;
@@ -27,9 +30,9 @@ public class Cliente {
     }
 
     public Cliente() {
+
     }
 
-    
     public String getId_cliente() {
         return id_cliente;
     }
@@ -82,6 +85,16 @@ public class Cliente {
     public String toString() {
         return "Cliente{" + "id_cliente=" + id_cliente + ", apellidos=" + apellidos + ", nombre=" + nombre + ", telefono=" + telefono + ", tarjeta_pago=" + tarjeta_pago + ", usuario=" + usuario + '}';
     }
-    
-    
+
+    public JSONObject toJSON() {
+        JSONObject j = new JSONObject();
+        j.put("id_usuario", this.getId_cliente());
+        j.put("tarjetaCredito", this.getTarjeta_pago());
+        j.put("nombre", this.getNombre());
+        j.put("apellidos", this.getApellidos());
+        j.put("telefono", this.getTelefono());
+
+        return j;
+    }
+
 }
