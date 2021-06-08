@@ -10,28 +10,33 @@ import org.json.JSONObject;
 
 /**
  *
- * @author oscar
+ * @author Gaby
  */
-public class Pelicula implements Serializable {
+public class Pelicula implements Serializable{
+ private String id_pelicula;
+ private String titulo;
+ private String poster_path;
+ private String movie_data ;
 
-    String id_pelicula;
-    String titulo;
-    String nombre;
-    String poster_path;
-    String movie_data;
-
-    public Pelicula(String id_pelicula, String titulo, String nombre, String poster_path, String movie_data) {
+    public Pelicula(String id_pelicula, String titulo, String poster_path, String movie_data) {
         this.id_pelicula = id_pelicula;
         this.titulo = titulo;
-        this.nombre = nombre;
         this.poster_path = poster_path;
         this.movie_data = movie_data;
     }
-
-    public Pelicula() {
-
+    
+    public JSONObject toJSON() {
+        JSONObject j = new JSONObject();
+        j.put("id_pelicula", this.getId_pelicula());
+        j.put("titulo", this.getTitulo());
+        j.put("poster_path", this.getPoster_path());
+        j.put("movie_data", this.getMovie_data());
+        return j;
     }
 
+    public Pelicula() {
+    }
+    
     public String getId_pelicula() {
         return id_pelicula;
     }
@@ -46,14 +51,6 @@ public class Pelicula implements Serializable {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 
     public String getPoster_path() {
@@ -74,19 +71,9 @@ public class Pelicula implements Serializable {
 
     @Override
     public String toString() {
-        return "Pelicula{" + "id_pelicula=" + id_pelicula + ", titulo=" + titulo
-                + ", nombre=" + nombre + ", poster_path=" + poster_path + ", movie_data="
-                + movie_data + '}';
+        return "Pelicula{" + "id_pelicula=" + id_pelicula + ", titulo=" + titulo + ", poster_path=" + poster_path + ", movie_data=" + movie_data + '}';
     }
-
-    public JSONObject toJSON() {
-        JSONObject j = new JSONObject();
-        j.put("id_pelicula", this.getId_pelicula());
-        j.put("titulo", this.getTitulo());
-        j.put("nombre", this.getNombre());
-        j.put("poster_path", this.getPoster_path());
-        j.put("movie_data", this.getMovie_data());
-        return j;
-    }
+ 
+ 
 
 }
