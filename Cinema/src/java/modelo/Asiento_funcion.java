@@ -6,6 +6,7 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.Date;
 import org.json.JSONObject;
 
 /**
@@ -14,50 +15,63 @@ import org.json.JSONObject;
  */
 public class Asiento_funcion implements Serializable {
 
-    Funcion funcion;
-    int fila;
-    int columna;
+    int funcion_sala_cinema_id;
+    int funcion_sala_numero;
+    Date funcion_fecha;
+    char fila;
+    int posicion;
     int ocupado;
 
-    public Asiento_funcion(Funcion funcion, int fila, int columna, int ocupado) {
-        this.funcion = funcion;
+    public Asiento_funcion(int funcion_sala_cinema_id, int funcion_sala_numero, Date funcion_fecha, char fila, int posicion, int ocupado) {
+        this.funcion_sala_cinema_id = funcion_sala_cinema_id;
+        this.funcion_sala_numero = funcion_sala_numero;
+        this.funcion_fecha = funcion_fecha;
         this.fila = fila;
-        this.columna = columna;
-        this.ocupado = ocupado;
-    }
-
-    public Asiento_funcion(int fila, int columna, int ocupado) {
-        this.fila = fila;
-        this.columna = columna;
+        this.posicion = posicion;
         this.ocupado = ocupado;
     }
 
     public Asiento_funcion() {
-
     }
 
-    public Funcion getFuncion() {
-        return funcion;
+    public int getFuncion_sala_cinema_id() {
+        return funcion_sala_cinema_id;
     }
 
-    public void setFuncion(Funcion funcion) {
-        this.funcion = funcion;
+    public void setFuncion_sala_cinema_id(int funcion_sala_cinema_id) {
+        this.funcion_sala_cinema_id = funcion_sala_cinema_id;
     }
 
-    public int getFila() {
+    public int getFuncion_sala_numero() {
+        return funcion_sala_numero;
+    }
+
+    public void setFuncion_sala_numero(int funcion_sala_numero) {
+        this.funcion_sala_numero = funcion_sala_numero;
+    }
+
+    public Date getFuncion_fecha() {
+        return funcion_fecha;
+    }
+
+    public void setFuncion_fecha(Date funcion_fecha) {
+        this.funcion_fecha = funcion_fecha;
+    }
+
+    public char getFila() {
         return fila;
     }
 
-    public void setFila(int fila) {
+    public void setFila(char fila) {
         this.fila = fila;
     }
 
-    public int getColumna() {
-        return columna;
+    public int getPosicion() {
+        return posicion;
     }
 
-    public void setColumna(int columna) {
-        this.columna = columna;
+    public void setPosicion(int posicion) {
+        this.posicion = posicion;
     }
 
     public int getOcupado() {
@@ -70,14 +84,16 @@ public class Asiento_funcion implements Serializable {
 
     @Override
     public String toString() {
-        return "Asiento_funcion{" + "funcion sin " + ", fila=" + fila + ", columna=" + columna
-                + ", ocupado=" + ocupado + '}';
+        return "Asiento_funcion{" + "funcion_sala_cinema_id=" + funcion_sala_cinema_id + ", funcion_sala_numero=" + funcion_sala_numero + ", funcion_fecha=" + funcion_fecha + ", fila=" + fila + ", posicion=" + posicion + ", ocupado=" + ocupado + '}';
     }
 
     public JSONObject toJSON() {
         JSONObject j = new JSONObject();
+        j.put("funcion_sala_cinema_id", this.getFuncion_sala_cinema_id());
+        j.put("funcion_sala_numero", this.getFuncion_sala_numero());
+        j.put("funcion_fecha", this.getFuncion_fecha());
         j.put("fila", this.getFila());
-        j.put("columna", this.getColumna());
+        j.put("posicion", this.getPosicion());
         j.put("ocupado", this.getOcupado());
         return j;
     }

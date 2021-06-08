@@ -13,10 +13,11 @@ import org.json.JSONObject;
  * @author Gaby
  */
 public class Pelicula implements Serializable{
- private String id_pelicula;
- private String titulo;
- private String poster_path;
- private String movie_data ;
+    
+    String id_pelicula;
+    String titulo;
+    String poster_path;
+    String movie_data;
 
     public Pelicula(String id_pelicula, String titulo, String poster_path, String movie_data) {
         this.id_pelicula = id_pelicula;
@@ -24,19 +25,10 @@ public class Pelicula implements Serializable{
         this.poster_path = poster_path;
         this.movie_data = movie_data;
     }
-    
-    public JSONObject toJSON() {
-        JSONObject j = new JSONObject();
-        j.put("id_pelicula", this.getId_pelicula());
-        j.put("titulo", this.getTitulo());
-        j.put("poster_path", this.getPoster_path());
-        j.put("movie_data", this.getMovie_data());
-        return j;
-    }
 
     public Pelicula() {
     }
-    
+
     public String getId_pelicula() {
         return id_pelicula;
     }
@@ -73,7 +65,17 @@ public class Pelicula implements Serializable{
     public String toString() {
         return "Pelicula{" + "id_pelicula=" + id_pelicula + ", titulo=" + titulo + ", poster_path=" + poster_path + ", movie_data=" + movie_data + '}';
     }
- 
- 
+    
+    
+    public JSONObject toJSON() {
+        JSONObject j = new JSONObject();
+        j.put("id_pelicula", this.getId_pelicula());
+        j.put("titulo", this.getTitulo());
+        j.put("poster_path", this.getPoster_path());
+        j.put("movie_data", this.getMovie_data());
+        return j;
+    }
+
+
 
 }

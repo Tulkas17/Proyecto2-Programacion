@@ -15,39 +15,35 @@ import org.json.JSONObject;
  */
 public class Funcion implements Serializable {
 
-    Sala sala;
-    Pelicula pelicula_id_pelicula;
+    int sala_cinema_id;
+    int sala_numero;
     Date fecha;
+    String pelicula_id;
 
-    public Funcion(Sala sala, Pelicula pelicula_id_pelicula, Date fecha) {
-        this.sala = sala;
-        this.pelicula_id_pelicula = pelicula_id_pelicula;
+    public Funcion(int sala_cinema_id, int sala_numero, Date fecha, String pelicula_id) {
+        this.sala_cinema_id = sala_cinema_id;
+        this.sala_numero = sala_numero;
         this.fecha = fecha;
-    }
-
-    public Funcion(Pelicula pelicula_id_pelicula, Date fecha) {
-        this.pelicula_id_pelicula = pelicula_id_pelicula;
-        this.fecha = fecha;
+        this.pelicula_id = pelicula_id;
     }
 
     public Funcion() {
-
     }
 
-    public Sala getSala() {
-        return sala;
+    public int getSala_cinema_id() {
+        return sala_cinema_id;
     }
 
-    public void setSala(Sala sala) {
-        this.sala = sala;
+    public void setSala_cinema_id(int sala_cinema_id) {
+        this.sala_cinema_id = sala_cinema_id;
     }
 
-    public Pelicula getPelicula_id_pelicula() {
-        return pelicula_id_pelicula;
+    public int getSala_numero() {
+        return sala_numero;
     }
 
-    public void setPelicula_id_pelicula(Pelicula pelicula_id_pelicula) {
-        this.pelicula_id_pelicula = pelicula_id_pelicula;
+    public void setSala_numero(int sala_numero) {
+        this.sala_numero = sala_numero;
     }
 
     public Date getFecha() {
@@ -58,17 +54,26 @@ public class Funcion implements Serializable {
         this.fecha = fecha;
     }
 
+    public String getPelicula_id() {
+        return pelicula_id;
+    }
+
+    public void setPelicula_id(String pelicula_id) {
+        this.pelicula_id = pelicula_id;
+    }
+
     @Override
     public String toString() {
-        return "Funcion{" + "sin sala" + ", pelicula_id_pelicula="
-                + pelicula_id_pelicula + ", fecha=" + fecha + '}';
+        return "Funcion{" + "sala_cinema_id=" + sala_cinema_id + ", sala_numero=" + sala_numero + ", fecha=" + fecha + ", pelicula_id=" + pelicula_id + '}';
     }
+
 
     public JSONObject toJSON() {
         JSONObject j = new JSONObject();
-        j.put("sala", this.getSala());
-        j.put("pelicula_id_pelicula", this.getPelicula_id_pelicula());
+        j.put("sala_cinema_id", this.getSala_cinema_id());
+        j.put("sala_numero", this.getSala_numero());
         j.put("fecha", this.getFecha());
+        j.put("pelicula_id", this.getPelicula_id());
         return j;
     }
 

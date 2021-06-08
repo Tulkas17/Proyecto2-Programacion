@@ -14,43 +14,77 @@ import org.json.JSONObject;
  */
 public class Asiento_sala implements Serializable {
 
-    int fila;
-    int columan;
+    int sala_cinema_id;
+    int sala_numero;
+    char fila;
+    int posicion;
+    int disponible;
 
-    public Asiento_sala(int fila, int columan) {
+    public Asiento_sala(int sala_cinema, int sala_numero, char fila, int posicion, int disponible) {
+        this.sala_cinema_id = sala_cinema;
+        this.sala_numero = sala_numero;
         this.fila = fila;
-        this.columan = columan;
+        this.posicion = posicion;
+        this.disponible = disponible;
     }
 
     public Asiento_sala() {
-        
     }
 
-    public int getFila() {
+    public int getSala_cinema_id() {
+        return sala_cinema_id;
+    }
+
+    public void setSala_cinema_id(int sala_cinema_id) {
+        this.sala_cinema_id = sala_cinema_id;
+    }
+
+    public int getSala_numero() {
+        return sala_numero;
+    }
+
+    public void setSala_numero(int sala_numero) {
+        this.sala_numero = sala_numero;
+    }
+
+    public char getFila() {
         return fila;
     }
 
-    public void setFila(int fila) {
+    public void setFila(char fila) {
         this.fila = fila;
     }
 
-    public int getColuman() {
-        return columan;
+    public int getPosicion() {
+        return posicion;
     }
 
-    public void setColuman(int columan) {
-        this.columan = columan;
+    public void setPosicion(int posicion) {
+        this.posicion = posicion;
+    }
+
+    public int getDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(int disponible) {
+        this.disponible = disponible;
     }
 
     @Override
     public String toString() {
-        return "Asiento_sala{" + "fila=" + fila + ", columan=" + columan + '}';
+        return "Asiento_sala{" + "sala_cinema=" + sala_cinema_id + ", sala_numero=" + sala_numero + ", fila=" + fila + ", posicion=" + posicion + ", disponible=" + disponible + '}';
     }
+
+    
 
     public JSONObject toJSON() {
         JSONObject j = new JSONObject();
+        j.put("sala_cinema_id", this.getSala_cinema_id());
+        j.put("sala_numero", this.getSala_numero());
         j.put("fila", this.getFila());
-        j.put("columan", this.getColuman());
+        j.put("posicion", this.getPosicion());
+        j.put("disponible", this.getDisponible());
         return j;
     }
 

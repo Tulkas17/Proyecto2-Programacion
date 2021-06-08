@@ -14,23 +14,14 @@ import org.json.JSONObject;
  */
 public class Sala implements Serializable {
 
-    private Cine cine;
-    private int numero;
-    private int capacidad;
+    Cine cine;
+    int numero;
+    int capacidad;
 
-    public Sala(Cine cine, int numero, int capacidad) {
-        this.cine = cine;
+    public Sala(Cine cinema, int numero, int capacidad) {
+        this.cine = cinema;
         this.numero = numero;
         this.capacidad = capacidad;
-    }
-
-  
-public JSONObject toJSON() {
-        JSONObject j = new JSONObject();
-        j.put("id_cinema", this.getCine().getId_cinema());
-        j.put("numero", this.getNumero());
-        j.put("capacidad", this.getCapacidad());
-        return j;
     }
 
     public Sala() {
@@ -43,8 +34,6 @@ public JSONObject toJSON() {
     public void setCine(Cine cine) {
         this.cine = cine;
     }
-
-   
 
     public int getNumero() {
         return numero;
@@ -64,11 +53,17 @@ public JSONObject toJSON() {
 
     @Override
     public String toString() {
-        return "Sala{" + "cine=" + cine + ", numero=" + numero + ", capacidad=" + capacidad + '}';
+        return "Sala{" + "cinema_id=" + cine + ", numero=" + numero + ", capacidad=" + capacidad + '}';
     }
 
-   
     
-    
+
+    public JSONObject toJSON() {
+        JSONObject j = new JSONObject();
+        j.put("cinema_id", this.getCine().getId_cinema());
+        j.put("numero", this.getNumero());
+        j.put("capacidad", this.getCapacidad());
+        return j;
+    }
 
 }

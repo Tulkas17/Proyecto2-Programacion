@@ -15,9 +15,11 @@
     </head>
     <body onload="init();">
         <jsp:directive.include file="header.jsp" />
+        <%--
     <td>
-        <button type="button" onclick="registrarUsuario('589852587','tty',1);">Prueba 1</button>
+        <button type="button" onclick="registrarUsuario('402230473', 'Arroyo', 'Oscar', '84949778', '5268258958258', 'jas');">Prueba 1</button>
     </td>
+        --%>
     <section>
         <div class="paper">
             <div class="rule_pattern">

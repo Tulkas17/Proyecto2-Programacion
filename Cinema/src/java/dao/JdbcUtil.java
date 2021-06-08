@@ -14,7 +14,7 @@ public class JdbcUtil {
     private static final String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String DB_CONNECTION = "jdbc:mysql://localhost:3306/bd_cine";
     private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "root";
+    private static final String DB_PASSWORD = "1616";
     private static final Connection dbConnection = getDBConnection();
 
     public static Connection getDBConnection() {

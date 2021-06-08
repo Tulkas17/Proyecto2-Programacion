@@ -7,3 +7,4 @@
 /Cinema/lib/JSONLib/build/
 /Cinema/lib/JSONLib/dist/
 /Cinema/lib/JSONLib/nbproject/private/
+Cinema/src/java/dao/JdbcUtil.java

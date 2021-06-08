@@ -2,22 +2,28 @@ function init() {
     console.log("Página inicializada..");
 }
 
-function registrarUsuario(id, clave, rol) {
+function registrarUsuario() {
     var datos = new FormData();
 
-    datos.append("dato1", "Hola, ¿qué tal se encuentran hoy?");
-    var registro = new Usuario(id, clave, rol);
+    var id_cliente = document.getElementById("id_cliente").value;
+    var apellidos = document.getElementById("apellidos").value;
+    var nombre = document.getElementById("nombre").value;
+    var telefono = document.getElementById("telefono").value;
+    var tarjeta_pago = document.getElementById("tarjeta_pago").value;
+    var clave = document.getElementById("clave").value;
+
+    var registro = new Cliente(id_cliente, apellidos, nombre, telefono, tarjeta_pago, clave);
     datos.append("user", JSON.stringify(registro));
 
     getJSON('ServicioRegistro', datos, mostrarResultados);
 
-    agregarMensaje(`Datos enviados: ${JSON.stringify(registro)}`);
+    location.replace("index.jsp");
 }
 
 
 function mostrarResultados(datos) {
-    console.log(datos);
-    agregarMensaje(JSON.stringify(datos));
+    //console.log(datos);
+    //agregarMensaje(JSON.stringify(datos));
 }
 
 function borrarResultados() {
@@ -30,9 +36,12 @@ function agregarMensaje(msj) {
     refM.innerHTML = `${refM.innerHTML}${msj}<br />`;
 }
 
-function Usuario(id_usuario, clave, rol) {
-    this.id_usuario = id_usuario;
+function Cliente(id_cliente, apellidos, nombre, telefono, tarjeta_pago, clave) {
+    this.id_cliente = id_cliente;
+    this.apellidos = apellidos;
+    this.nombre = nombre;
+    this.telefono = telefono;
+    this.tarjeta_pago = tarjeta_pago;
     this.clave = clave;
-    this.rol = rol;
 }
 
