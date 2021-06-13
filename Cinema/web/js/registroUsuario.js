@@ -15,26 +15,11 @@ function registrarUsuario() {
     var registro = new Cliente(id_cliente, apellidos, nombre, telefono, tarjeta_pago, clave);
     datos.append("user", JSON.stringify(registro));
 
-    getJSON('ServicioRegistro', datos, mostrarResultados);
+    getJSON('ServicioRegistro', datos);
 
     location.replace("index.jsp");
 }
 
-
-function mostrarResultados(datos) {
-    //console.log(datos);
-    //agregarMensaje(JSON.stringify(datos));
-}
-
-function borrarResultados() {
-    var refM = document.getElementById('mensaje');
-    refM.innerHTML = '<strong>Resultados:</strong><br />';
-}
-
-function agregarMensaje(msj) {
-    var refM = document.getElementById('mensaje');
-    refM.innerHTML = `${refM.innerHTML}${msj}<br />`;
-}
 
 function Cliente(id_cliente, apellidos, nombre, telefono, tarjeta_pago, clave) {
     this.id_cliente = id_cliente;
