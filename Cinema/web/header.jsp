@@ -14,4 +14,7 @@
     <a href="login.jsp">  
         <button type="submit">Login</button>  
     </a>
+    <button id="botonBusqueda" type="button" onclick="busquedaPelicula()" style="float: right">Search Movie</button>
+    <input type="text" name="busquedaPelicula" value="Search" style="float: right">
+    
 </header>

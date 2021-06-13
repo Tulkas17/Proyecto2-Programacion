@@ -13,14 +13,20 @@ function verificarUsuario() {
 function resultado(usuario) {
 
     if (usuario.result === "ok") {
-        location.replace("index.jsp");  
-    }else if(usuario.result === "bad"){
+        if (usuario.rol === 2) {
+            location.replace("index.jsp");
+        } else if (usuario.rol === 1) {
+            location.replace("menuAdmin.jsp");
+        }
+    } else if (usuario.result === "bad") {
+        document.getElementById('ocultar').style.display = 'block';
         document.getElementById('advertencia').innerHTML = "usuario no valido, revisar los credenciales";
-        document.getElementById('botonRegistro').style.display = 'block';
     }
 }
 
-
+function registrar(){
+    location.replace("registro.jsp");
+}
 
 function Usuario(id_cliente, clave) {
     this.id_cliente = id_cliente;

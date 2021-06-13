@@ -9,42 +9,54 @@
 <html>
     <head>
         <meta charset="UTF-8" />
+        <link rel="stylesheet" href="css/default.css" type="text/css">
         <script src="js/getJSON.js" type="text/javascript"></script>
         <script src="js/inicioSesion.js" type="text/javascript"></script>
         <title>JSP Page</title>
     </head>
     <body>
         <jsp:directive.include file="header.jsp" />
-        <form class="formLogin">
-            <table>
-                <tr>
-                    <td class="etiqueta">
-                        <label for="usuario">Usuario:&nbsp;</label>
-                    </td>
-                    <td class="campo">
-                        <input type="text" size="30"
-                               id="usuario" name="usuario" autocomplete="off" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="etiqueta">
-                        <label for="password">Clave:&nbsp;</label>
-                    </td>
-                    <td class="campo">
-                        <input type="password" size="30"
-                               id="password" name="password" autocomplete="off" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="controles" colspan="2">
-                        <button type="button" onclick="verificarUsuario();">Varificar</button>
-                    </td>
-                </tr>
-            </table>
-            <div>
-                <p id="advertencia"></p>
-                <button id="botonRegistro" style="display:none" type="button" onclick="ocultar()">Ocultar</button>
+        <jsp:directive.include file="headerAnuncio.jsp" />
+        <div id="wrapper">
+            <div id="contents">
+                <form class="formLogin">
+                    <table>
+                        <tr>
+                            <td class="etiqueta">
+                                <label for="usuario">Usuario:&nbsp;</label>
+                            </td>
+                            <td class="campo">
+                                <input type="text" size="30"
+                                       id="usuario" name="usuario" autocomplete="off" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="etiqueta">
+                                <label for="password">Clave:&nbsp;</label>
+                            </td>
+                            <td class="campo">
+                                <input type="password" size="30"
+                                       id="password" name="password" autocomplete="off" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="controles" colspan="2">
+                                <button type="button" onclick="verificarUsuario();">Verificar</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
             </div>
-        </form>
+        </div>
+        <div id="ocultar" style="display: none">
+            <div id="wrapper">
+                <div id="contents">
+                    <p id="advertencia" style="color: blue;"></p>
+                    
+                </div>
+                <button id="botonRegistro" type="button" onclick="registrar()" style="margin-left: 45%; margin-right: 50%;">Registrar</button>
+            </div>
+        </div>
+        <jsp:directive.include file="footer.jsp" />
     </body>
 </html>

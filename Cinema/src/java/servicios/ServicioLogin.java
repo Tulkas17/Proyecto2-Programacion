@@ -71,7 +71,7 @@ public class ServicioLogin extends HttpServlet {
                     session.setAttribute("rol", u.getRol());
                     resultado.put("result", "ok");
                     //resultado.put("id_usuario", u.getId_usuario());
-                    //resultado.put("rol", u.getRol());
+                    resultado.put("rol", u.getRol());
                 }
                 else{
                     resultado.put("result", "bad");
