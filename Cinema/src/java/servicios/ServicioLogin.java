@@ -6,8 +6,6 @@
 package servicios;
 
 import com.google.gson.JsonSyntaxException;
-import dao.ClienteDao;
-import dao.ClienteDaoImpl;
 import dao.UsuarioDao;
 import dao.UsuarioDaoImpl;
 import java.io.IOException;
@@ -25,7 +23,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import modelo.Cliente;
 import modelo.Usuario;
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -14,13 +14,13 @@
         <script src="js/registroUsuario.js" type="text/javascript"></script>
         <title>JSP Page</title>
     </head>
-    <body>
+    <body style="background-color: #333333;">
         <jsp:directive.include file="header.jsp" />
         <jsp:directive.include file="headerAnuncio.jsp" />
         <section>
             <div id="wrapper">
                 <div id ="contents">
-                    <form class="formLogin" name="nuevoUsuario" id="nuevoUsuario">
+                    <form class="formLogin" name="nuevoUsuario" id="nuevoUsuario" style="color: white;">
                         <table>
                             <tr>
                                 <td class="etiqueta">

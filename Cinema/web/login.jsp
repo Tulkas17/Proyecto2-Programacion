@@ -14,12 +14,12 @@
         <script src="js/inicioSesion.js" type="text/javascript"></script>
         <title>JSP Page</title>
     </head>
-    <body>
+    <body style="background-color: #333333;" >
         <jsp:directive.include file="header.jsp" />
         <jsp:directive.include file="headerAnuncio.jsp" />
         <div id="wrapper">
             <div id="contents">
-                <form class="formLogin">
+                <form class="formLogin" style="color: white;">
                     <table>
                         <tr>
                             <td class="etiqueta">

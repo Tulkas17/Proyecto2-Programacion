@@ -1,7 +1,3 @@
-function init() {
-    console.log("Página inicializada..");
-}
-
 function registrarUsuario() {
     var datos = new FormData();
 

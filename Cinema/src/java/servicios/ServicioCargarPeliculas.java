@@ -6,36 +6,31 @@
 package servicios;
 
 import com.google.gson.JsonSyntaxException;
-import dao.ClienteDaoImpl;
-import dao.ClienteDao;
-import dao.UsuarioDao;
-import dao.UsuarioDaoImpl;
+import dao.PeliculaDao;
+import dao.PeliculaDaoImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Cliente;
-import modelo.Usuario;
+import modelo.Pelicula;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/**
- *
- * @author oscar
- */
-@WebServlet(name = "ServicioRegistro", urlPatterns = {"/ServicioRegistro"})
-@MultipartConfig
-public class ServicioRegistro extends HttpServlet {
+@WebServlet(name = "ServicioCargarPeliculas", urlPatterns = {"/ServicioCargarPeliculas"})
+public class ServicioCargarPeliculas extends HttpServlet {
+
+    private Optional<String> encoding;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
@@ -45,37 +40,29 @@ public class ServicioRegistro extends HttpServlet {
         response.setContentType("application/json;charset=UTF-8");
 
         try (PrintWriter out = response.getWriter()) {
-            StringBuilder r = new StringBuilder();
-
             try {
 
-                UsuarioDao userDao = new UsuarioDaoImpl();
-                ClienteDao cliDao = new ClienteDaoImpl();
+                PeliculaDao peliDao = new PeliculaDaoImpl();
+                List<Pelicula> peliculas = peliDao.findAll();
 
-                JSONObject obj = new JSONObject(toUTF8String(request.getParameter("user")));
-                Usuario u = new Usuario(
-                        obj.getString("id_cliente"),
-                        obj.getString("clave"),
-                        2
-                );
+                JSONObject o = new JSONObject();
+                JSONObject e = null;
+                JSONArray r = new JSONArray();
 
-                Cliente c = new Cliente(
-                        obj.getString("id_cliente"),
-                        obj.getString("apellidos"),
-                        obj.getString("nombre"),
-                        obj.getString("telefono"),
-                        obj.getString("tarjeta_pago"),
-                        u
-                );
+                for (int i = 0; i < peliculas.size(); i++) {
+                    e = new JSONObject();
+                    e.put("id_pelicula", peliculas.get(i).getId_pelicula());
+                    r.put(e);
+                }
 
-                userDao.save(u);
-                cliDao.save(c);
+                o.put("datos_pelicula", r);
+                out.println(o);
 
             } catch (JsonSyntaxException
-                    | UnsupportedEncodingException
                     | NumberFormatException
                     | JSONException ex) {
             }
+
         }
 
     }
@@ -84,25 +71,51 @@ public class ServicioRegistro extends HttpServlet {
         return encoding.isPresent() ? s : new String(s.getBytes(), StandardCharsets.UTF_8);
     }
 
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(ServicioRegistro.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServicioCargarPeliculas.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(ServicioRegistro.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServicioCargarPeliculas.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    private Optional<String> encoding;
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
 }

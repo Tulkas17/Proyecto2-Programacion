@@ -12,7 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body>
+    <body style="background-color: #333333;">
         <jsp:directive.include file="headerSesionActivaAdmin.jsp" />
         <jsp:directive.include file="headerAnuncio.jsp" />
         <jsp:directive.include file="footer.jsp" />
