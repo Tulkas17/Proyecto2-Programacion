@@ -14,7 +14,7 @@ function resultado(usuario) {
 
     if (usuario.result === "ok") {
         if (usuario.rol === 2) {
-            location.replace("index.jsp");
+            location.href = "index.jsp";
         } else if (usuario.rol === 1) {
             location.replace("menuAdmin.jsp");
         }

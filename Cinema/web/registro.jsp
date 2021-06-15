@@ -8,6 +8,9 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta http-equiv="pragma" content="no-cache"/>
+        <meta http-equiv="cache-control" value="no-cache, no-store, must-revalidate"/>
+        <meta http-equiv="expires" content="0">
         <meta charset="UTF-8" />
         <link rel="stylesheet" href="css/default.css" type="text/css">
         <script src="js/getJSON.js" type="text/javascript"></script>

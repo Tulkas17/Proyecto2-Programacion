@@ -6,7 +6,6 @@ body {
 
 header {
     background-color: darkblue;
-    background-image: url('images/banner.png');
     background-position: right;
     background-repeat: no-repeat;
     border-radius: 8px;
@@ -137,13 +136,56 @@ div.wrapperC {
     margin: 4px;
     text-align: center;
     padding: 8px;
+    font-size: 9px;
 }
 
 .galeria img {
-    background-color: #444444;
+    background-image: url('imagenes/proximamente.jpg');
+    background-repeat: no-repeat;
+    background-origin: content-box;
     border: none;
     height: 240px;
     width: 160px;
+    list-style: none;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.galeria td:hover img{
+    transition: 0.5s;
+    height: 340px;
+    width: 260px;
+}
+
+.galeria .comboFuncion {
+    bottom: 55px;
+    text-align: left;
+    height: 0px;
+    width: 0px;
+    background: #fff;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 0px;
+    padding-right: 0px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.galeria td:hover .comboFuncion {
+    height: auto;
+    width: 260px;
+    visibility: visible;
+    opacity: 1;
+}
+
+.galeria td:hover p{
+    transition: 0.5s;
+    font-size: 20px;
+    text-shadow: 2px 0 0px #800040, 3px 2px 0px rgba(77,0,38,0.5), 3px 0 3px #FF002B, 5px 0 3px #800015, 6px 2px 3px rgba(77,0,13,0.5);
+    color: #FFFFFF;
 }
 
 #h1Titulo {

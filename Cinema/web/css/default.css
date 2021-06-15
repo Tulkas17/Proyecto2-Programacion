@@ -6,7 +6,6 @@ body {
 
 header {
     background-color: darkblue;
-    background-image: url('images/banner.png');
     background-position: right;
     background-repeat: no-repeat;
     border-radius: 8px;

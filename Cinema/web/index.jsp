@@ -49,8 +49,11 @@
                                     t += "<tr>";
                                     for (let j = 0; j < n; j++) {
                                         t += "<td>";
+                                        t += "<p></p>";
                                         t += "<img />";
-                                        t += " <p>(movie title)</p>";
+                                        t += "<div>";
+                                        t += "<ul></ul>";
+                                        t += "</div>";       
                                         t += "</td>";
                                     }
                                     t += "</tr>";
