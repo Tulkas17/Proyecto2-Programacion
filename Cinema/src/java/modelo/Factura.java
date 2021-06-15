@@ -20,11 +20,11 @@ public class Factura implements Serializable {
     Cliente cliente;
     String tarjeta_pago;
 
-    public Factura(int seq_factura, Date fecha, Cliente cliente, String tarjeta_pago) {
+    public Factura(int seq_factura, Date fecha, Cliente cliente) {
         this.seq_factura = seq_factura;
         this.fecha = fecha;
         this.cliente = cliente;
-        this.tarjeta_pago = tarjeta_pago;
+        this.tarjeta_pago = cliente.getTarjeta_pago();
     }
 
     public Factura() {
@@ -78,3 +78,4 @@ public class Factura implements Serializable {
     }
 
 }
+

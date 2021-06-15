@@ -21,17 +21,21 @@ public class Tiquete implements Serializable {
     int asiento_funcion_sala_numero;
     Date asiento_funcion_fecha;
     char asiento_funcion_fila;
-    int siento_funcion_posion;
+    int asiento_funcion_posicion;
     double monto;
+    Asiento_funcion asientoFuncion;
+    Factura factura;
 
-    public Tiquete(int id_tiquete, int factura_seq, int asiento_funcion_sala_cinema, int asiento_funcion_sala_numero, Date asiento_funcion_fecha, char asiento_funcion_fila, int siento_funcion_posion, double monto) {
+    public Tiquete(int id_tiquete, Asiento_funcion asientoFuncion, Factura factura, double monto) {
         this.id_tiquete = id_tiquete;
         this.factura_seq = factura_seq;
-        this.asiento_funcion_sala_cinema = asiento_funcion_sala_cinema;
-        this.asiento_funcion_sala_numero = asiento_funcion_sala_numero;
-        this.asiento_funcion_fecha = asiento_funcion_fecha;
-        this.asiento_funcion_fila = asiento_funcion_fila;
-        this.siento_funcion_posion = siento_funcion_posion;
+        this.factura =factura;
+        this.asientoFuncion =asientoFuncion;
+        this.asiento_funcion_sala_cinema = asientoFuncion.getFuncion_sala_cinema_id();
+        this.asiento_funcion_sala_numero = asientoFuncion.getFuncion_sala_numero();
+        this.asiento_funcion_fecha = asientoFuncion.getFuncion_fecha();
+        this.asiento_funcion_fila = asientoFuncion.getFila();
+        this.asiento_funcion_posicion = asientoFuncion.getPosicion();
         this.monto = monto;
     } 
 
@@ -79,12 +83,31 @@ public class Tiquete implements Serializable {
         this.asiento_funcion_fila = asiento_funcion_fila;
     }
 
-    public int getSiento_funcion_posion() {
-        return siento_funcion_posion;
+    public int getAsiento_funcion_posicion() {
+        return asiento_funcion_posicion;
     }
 
-    public void setSiento_funcion_posion(int siento_funcion_posion) {
-        this.siento_funcion_posion = siento_funcion_posion;
+    public void setAsiento_funcion_posicion(int asiento_funcion_posicion) {
+        this.asiento_funcion_posicion = asiento_funcion_posicion;
+    }
+
+  
+
+
+    public Asiento_funcion getAsientoFuncion() {
+        return asientoFuncion;
+    }
+
+    public void setAsientoFuncion(Asiento_funcion asientoFuncion) {
+        this.asientoFuncion = asientoFuncion;
+    }
+
+    public Factura getFactura() {
+        return factura;
+    }
+
+    public void setFactura(Factura factura) {
+        this.factura = factura;
     }
     
     
@@ -107,7 +130,11 @@ public class Tiquete implements Serializable {
 
     @Override
     public String toString() {
-        return "Tiquete{" + "id_tiquete=" + id_tiquete + ", factura_seq=" + factura_seq + ", asiento_funcion_sala_cinema=" + asiento_funcion_sala_cinema + ", asiento_funcion_sala_numero=" + asiento_funcion_sala_numero + ", asiento_funcion_fecha=" + asiento_funcion_fecha + ", asiento_funcion_fila=" + asiento_funcion_fila + ", siento_funcion_posion=" + siento_funcion_posion + ", monto=" + monto + '}';
+        return "Tiquete{" + "id_tiquete=" + id_tiquete + ", factura_seq=" 
+                + factura_seq + ", asiento_funcion_sala_cinema=" + asiento_funcion_sala_cinema 
+                + ", asiento_funcion_sala_numero=" + asiento_funcion_sala_numero + ", asiento_funcion_fecha="
+                + asiento_funcion_fecha + ", asiento_funcion_fila=" + asiento_funcion_fila 
+                + ", siento_funcion_posion=" + asiento_funcion_posicion + ", monto=" + monto + '}';
     }
 
     
@@ -120,7 +147,7 @@ public class Tiquete implements Serializable {
         j.put("asiento_funcion_sala_numero", this.getAsiento_funcion_sala_numero());
         j.put("asiento_funcion_fecha", this.getAsiento_funcion_fecha());
         j.put("asiento_funcion_fila", this.getAsiento_funcion_fila());
-        j.put("asiento_funcion_posicion", this.getSiento_funcion_posion());
+        j.put("asiento_funcion_posicion", this.getAsiento_funcion_posicion());
         j.put("monto", this.getMonto());
         return j;
     }

@@ -20,15 +20,17 @@ public class Asiento_funcion implements Serializable {
     Date funcion_fecha;
     char fila;
     int posicion;
-    int ocupado;
+    boolean ocupado;
+    Funcion funcion;
 
-    public Asiento_funcion(int funcion_sala_cinema_id, int funcion_sala_numero, Date funcion_fecha, char fila, int posicion, int ocupado) {
-        this.funcion_sala_cinema_id = funcion_sala_cinema_id;
-        this.funcion_sala_numero = funcion_sala_numero;
-        this.funcion_fecha = funcion_fecha;
+    public Asiento_funcion(Funcion funcion, char fila, int posicion, boolean ocupado) {
+        this.funcion_sala_cinema_id = funcion.getSala_cinema_id();
+        this.funcion_sala_numero = funcion.getSala_numero();
+        this.funcion_fecha = funcion.getFecha();
         this.fila = fila;
         this.posicion = posicion;
         this.ocupado = ocupado;
+        this.funcion =funcion;
     }
 
     public Asiento_funcion() {
@@ -74,14 +76,23 @@ public class Asiento_funcion implements Serializable {
         this.posicion = posicion;
     }
 
-    public int getOcupado() {
+    public boolean getOcupado() {
         return ocupado;
     }
 
-    public void setOcupado(int ocupado) {
+    public void setOcupado(boolean ocupado) {
         this.ocupado = ocupado;
     }
 
+    public Funcion getFuncion() {
+        return funcion;
+    }
+
+    public void setFuncion(Funcion funcion) {
+        this.funcion = funcion;
+    }
+
+    
     @Override
     public String toString() {
         return "Asiento_funcion{" + "funcion_sala_cinema_id=" + funcion_sala_cinema_id + ", funcion_sala_numero=" + funcion_sala_numero + ", funcion_fecha=" + funcion_fecha + ", fila=" + fila + ", posicion=" + posicion + ", ocupado=" + ocupado + '}';

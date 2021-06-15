@@ -19,13 +19,20 @@ public class Funcion implements Serializable {
     int sala_numero;
     Date fecha;
     String pelicula_id;
+    Sala sala;
+    Pelicula pelicula;
 
-    public Funcion(int sala_cinema_id, int sala_numero, Date fecha, String pelicula_id) {
-        this.sala_cinema_id = sala_cinema_id;
-        this.sala_numero = sala_numero;
+    public Funcion(Date fecha, Sala sala, Pelicula pelicula) {
         this.fecha = fecha;
-        this.pelicula_id = pelicula_id;
+        this.sala = sala;
+        this.pelicula = pelicula;
+        this.pelicula_id = pelicula.getId_pelicula();
+        this.sala_cinema_id = sala.getCine().getId_cinema();
+        this.sala_numero = sala.getNumero();
     }
+
+    
+   
 
     public Funcion() {
     }
@@ -61,6 +68,23 @@ public class Funcion implements Serializable {
     public void setPelicula_id(String pelicula_id) {
         this.pelicula_id = pelicula_id;
     }
+
+    public Sala getSala() {
+        return sala;
+    }
+
+    public void setSala(Sala sala) {
+        this.sala = sala;
+    }
+
+    public Pelicula getPelicula() {
+        return pelicula;
+    }
+
+    public void setPelicula(Pelicula pelicula) {
+        this.pelicula = pelicula;
+    }
+    
 
     @Override
     public String toString() {

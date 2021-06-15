@@ -13,25 +13,41 @@ import org.json.JSONObject;
  * @author oscar
  */
 public class Asiento_sala implements Serializable {
-
+       
+    Sala sala;
     int sala_cinema_id;
     int sala_numero;
     char fila;
     int posicion;
-    int disponible;
+    Boolean disponible;
 
-    public Asiento_sala(int sala_cinema, int sala_numero, char fila, int posicion, int disponible) {
-        this.sala_cinema_id = sala_cinema;
-        this.sala_numero = sala_numero;
+    public Asiento_sala(Sala sala, char fila, int posicion, boolean disponible) {
+        this.sala = sala;
         this.fila = fila;
         this.posicion = posicion;
         this.disponible = disponible;
+        this.sala_cinema_id = sala.getCine().getId_cinema();
+        this.sala_numero = sala.getNumero();
     }
+
+   
 
     public Asiento_sala() {
     }
 
+    public Sala getSala() {
+        return sala;
+    }
+
+    public void setSala(Sala sala) {
+        this.sala = sala;
+//        this.sala_cinema_id = sala.getCine().getId_cinema();
+//        this.sala_numero = sala.getNumero();
+    }
+
+    
     public int getSala_cinema_id() {
+        
         return sala_cinema_id;
     }
 
@@ -63,11 +79,11 @@ public class Asiento_sala implements Serializable {
         this.posicion = posicion;
     }
 
-    public int getDisponible() {
+    public boolean getDisponible() {
         return disponible;
     }
 
-    public void setDisponible(int disponible) {
+    public void setDisponible(boolean disponible) {
         this.disponible = disponible;
     }
 
