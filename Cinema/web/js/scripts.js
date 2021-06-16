@@ -4,13 +4,17 @@ function busquedaPelicula() {
 
 var dimensionTabla = {filas: 4, columnas: 6};
 var posterUrl = "https://www.themoviedb.org/t/p/w1280";
-var datosFunc = null;
+var myStorage = window.localStorage;
 var col = 0;
 var fil = 0;
 
 function init() {
-    cargarFuncionesDB();
-    cargarCarteleraDB(); 
+    if (myStorage.getItem('funciones') === null) {
+        cargarFuncionesDB();
+    }
+    cargarCarteleraDB();
+    fil = 0;
+    col = 0;
 }
 
 function cargarCarteleraDB() {
@@ -25,8 +29,7 @@ function cargarFuncionesDB() {
     fetch('ServicioCargarFunciones').then(function (resultado) {
         return resultado.json();
     }).then(function (datos) {
-        datosFunc = null;
-        datosFunc = datos['datos_funciones'];
+        myStorage.setItem('funciones', JSON.stringify(datos));
     });
 }
 
@@ -57,15 +60,11 @@ function cargarCartelera(ids, element) {
     }
 }
 
-function actulizarIndex(){
+function actulizarIndex() {
     location.reload();
 }
 
 function actualizar(ref, info, m, n, p) {
-
-    // Calcula la fila y columna correspondiente según
-    // el valor de índice (posición) de la película en
-    // el arreglo de ids.
 
     //var r = p % m;
     //var c = Math.floor(p / m);
@@ -78,6 +77,8 @@ function actualizar(ref, info, m, n, p) {
         col++;
     }
 
+    var datosFunc = JSON.parse(localStorage.getItem("funciones")).datos_funciones;
+
 
     if (info.id > 0) {
         t = `<p>${info.title}</p>`;
@@ -86,7 +87,7 @@ function actualizar(ref, info, m, n, p) {
         t += `<div class="comboFuncion">`;
         t += `<ul>`;
         for (let i in datosFunc) {
-            console.log(`${datosFunc[i].pelicula_id}: ${info.id}`);
+            console.log(`${datosFunc[i].pelicula_id}`);
             if (datosFunc[i].pelicula_id == info.id) {
                 //t +=  `<l1><a href="registro.jsp">${datosFunc[i].fecha} ${"sala "}:  ${datosFunc[i].sala_numero}</a></l1>`;
                 //t += `<a href='#' onclick='javascript:window.open("registro.jsp", "_blank", "scrollbars=1,resizable=1,height=300,width=450");' title='Pop Up'>${datosFunc[i].fecha} ${"sala "}:  ${datosFunc[i].sala_numero}</a>`;
@@ -106,5 +107,3 @@ function actualizar(ref, info, m, n, p) {
         celda.innerHTML = t;
     }
 }
-
-window.onload = init;

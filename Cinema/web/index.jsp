@@ -18,7 +18,7 @@
         <script src="js/registroUsuario.js" type="text/javascript"></script>
         <title>JSP Page</title>
     </head>
-    <body class="bodyC">
+    <body onload="init();" class="bodyC">
         <%
             session = request.getSession();
             if (session.getAttribute("id_usuario") != null && session.getAttribute("rol") == "1") {%>
@@ -53,7 +53,7 @@
                                         t += "<img />";
                                         t += "<div>";
                                         t += "<ul></ul>";
-                                        t += "</div>";       
+                                        t += "</div>";
                                         t += "</td>";
                                     }
                                     t += "</tr>";
@@ -64,8 +64,7 @@
                             <tfoot></tfoot>
                         </table>
                     </section>
-                </div>              
-        </section>
-        <jsp:directive.include file="footer.jsp" />
-    </body>
-</html>
+                </div> 
+                <jsp:directive.include file="footer.jsp" />
+                </body>
+                </html>
