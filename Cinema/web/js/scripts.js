@@ -89,10 +89,15 @@ function actualizar(ref, info, m, n, p) {
         for (let i in datosFunc) {
             console.log(`${datosFunc[i].pelicula_id}`);
             if (datosFunc[i].pelicula_id == info.id) {
-                //t +=  `<l1><a href="registro.jsp">${datosFunc[i].fecha} ${"sala "}:  ${datosFunc[i].sala_numero}</a></l1>`;
-                //t += `<a href='#' onclick='javascript:window.open("registro.jsp", "_blank", "scrollbars=1,resizable=1,height=300,width=450");' title='Pop Up'>${datosFunc[i].fecha} ${"sala "}:  ${datosFunc[i].sala_numero}</a>`;
-                t += `<l1><a class="click" href="registro.jsp">${datosFunc[i].fecha} ${"sala "}:  ${datosFunc[i].sala_numero}</a></l1>`;
-                //t += `<iframe class="modal" src="registro.jsp" style="position:fixed; top:0; left:0; bottom:0; right:0; width:0%; height:0%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"></iframe>`;
+                //t += `<l1><a href="compraTiquetes.jsp" onclick="">${datosFunc[i].fecha} ${"sala "}:  ${datosFunc[i].sala_numero}</a></l1>`;
+                t += `
+                    <form action="compraTiquetes.jsp" method="get">
+                    <input type="hidden" name="pelicula" value="${datosFunc[i].pelicula_id}" />
+                    <input type="hidden" name="fecha" value="${datosFunc[i].fecha}" />
+                    <input type="hidden" name="numero" value="${datosFunc[i].sala_numero}" />
+                    <input type="submit" value="${datosFunc[i].fecha} ${"sala "}:  ${datosFunc[i].sala_numero}" />
+                   </form>
+                    `;
             }
         }
         t += `</ul>`;
@@ -106,4 +111,13 @@ function actualizar(ref, info, m, n, p) {
         t += `<p></p>`;
         celda.innerHTML = t;
     }
+}
+
+function cargarFuncionLocal() {
+    document.getElementById("guardarAqui").innerHTML = JSON.parse(localStorage.getItem("funcionSelecionada"));
+}
+
+function guardarFuncionLocal(funcion) {
+    console.log(`${funcion}`);
+    myStorage.setItem('funcionSelecionada', JSON.stringify(funcion));
 }
