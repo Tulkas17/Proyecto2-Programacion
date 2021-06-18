@@ -104,4 +104,31 @@ footer {
     text-align: center;
 }
 
+.formPelicula {
+    color: white;
+}
+
+.formPelicula h1{
+    font-size: 25px;
+    color: white;
+    align-content: center;
+    text-align: center;
+}
+
+.formPelicula .pPeli{
+    color: white;
+    font-size: 8px;
+    opacity: 50%;
+    text-align: center;
+}
+
+.formPelicula lPeli{
+    text-align: center;
+}
+
+.formLogin .botonPeli button{
+    margin-left: 50%;
+    margin-right: 50%;
+}
+
 

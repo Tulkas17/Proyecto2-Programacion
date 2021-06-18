@@ -95,6 +95,5 @@ public class Cliente {
         j.put("telefono", this.getTelefono());
 
         return j;
-    }
-
+    }       
 }

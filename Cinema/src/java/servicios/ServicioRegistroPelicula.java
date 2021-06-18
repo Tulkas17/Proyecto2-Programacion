@@ -6,16 +6,17 @@
 package servicios;
 
 import com.google.gson.JsonSyntaxException;
-import dao.FuncionDao;
-import dao.FuncionDaoImpl;
+import dao.ClienteDao;
+import dao.ClienteDaoImpl;
 import dao.PeliculaDao;
 import dao.PeliculaDaoImpl;
+import dao.UsuarioDao;
+import dao.UsuarioDaoImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,9 +26,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Funcion;
+import modelo.Cliente;
 import modelo.Pelicula;
-import org.json.JSONArray;
+import modelo.Usuario;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -35,9 +36,9 @@ import org.json.JSONObject;
  *
  * @author oscar
  */
-@WebServlet(name = "ServicioCargarFunciones", urlPatterns = {"/ServicioCargarFunciones"})
+@WebServlet(name = "ServicioRegistroPelicula", urlPatterns = {"/ServicioRegistroPelicula"})
 @MultipartConfig
-public class ServicioCargarFunciones extends HttpServlet {
+public class ServicioRegistroPelicula extends HttpServlet {
 
     private Optional<String> encoding;
 
@@ -47,36 +48,33 @@ public class ServicioCargarFunciones extends HttpServlet {
         request.setCharacterEncoding(StandardCharsets.UTF_8.toString());
         encoding = Optional.of(request.getCharacterEncoding());
         response.setContentType("application/json;charset=UTF-8");
+        JSONObject resultado = new JSONObject();
 
         try (PrintWriter out = response.getWriter()) {
+            StringBuilder r = new StringBuilder();
+
             try {
 
-                FuncionDao funcDao = new FuncionDaoImpl();
-                List<Funcion> funciones = funcDao.findAll();
+                PeliculaDao peliDao = new PeliculaDaoImpl();
 
-                JSONObject o = new JSONObject();
-                JSONObject e = null;
-                JSONArray r = new JSONArray();
+                JSONObject obj = new JSONObject(toUTF8String(request.getParameter("pelicula")));
+                Pelicula p = new Pelicula(
+                        obj.getString("codigoPelicula"),
+                        "",
+                        "",
+                        ""
+                );
 
-                for (int i = 0; i < funciones.size(); i++) {
-                    e = new JSONObject();
-                    e.put("sala_cinema_id", funciones.get(i).getSala_cinema_id());
-                    e.put("sala_numero", funciones.get(i).getSala_numero());
-                    e.put("fecha", funciones.get(i).getFecha());
-                    e.put("pelicula_id", funciones.get(i).getPelicula_id());
-                    r.put(e);
-                }
-
-                o.put("datos_funciones", r);
-                out.println(o);
+                peliDao.save(p);
+                resultado.put("result", "ok");
 
             } catch (JsonSyntaxException
+                    | UnsupportedEncodingException
                     | NumberFormatException
                     | JSONException ex) {
             }
-
+            out.println(resultado);
         }
-
     }
 
     private String toUTF8String(String s) throws UnsupportedEncodingException {
@@ -98,7 +96,7 @@ public class ServicioCargarFunciones extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(ServicioCargarFunciones.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServicioRegistroPelicula.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -116,7 +114,7 @@ public class ServicioCargarFunciones extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(ServicioCargarFunciones.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServicioRegistroPelicula.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -18,6 +18,7 @@ import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +29,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 @WebServlet(name = "ServicioCargarPeliculas", urlPatterns = {"/ServicioCargarPeliculas"})
+@MultipartConfig
 public class ServicioCargarPeliculas extends HttpServlet {
 
     private Optional<String> encoding;

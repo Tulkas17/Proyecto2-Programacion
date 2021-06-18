@@ -8,11 +8,13 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="css/default.css" type="text/css">
         <script src="js/scripts.js" type="text/javascript"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body>
+    <body class="bodyC">
+        <jsp:directive.include file="headerSesionActivaAdmin.jsp" />
         <%
             String pelicula = request.getParameter("pelicula");
             String fecha = request.getParameter("fecha");
@@ -21,5 +23,6 @@
         <p><%=pelicula%></p>
         <p><%=fecha%></p>
         <p><%=numero%></p>
+        <jsp:directive.include file="footer.jsp" />
     </body>
 </html>

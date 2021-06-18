@@ -52,7 +52,6 @@ function cargarCartelera(ids, element) {
             fetch(`${movieDataURL}${id}?api_key=${key}`).then(
                     resultado => resultado.json()
             ).then(info => {
-                console.log(`${p}: ${info.title}`);
                 actualizar(ref, info, m, n, p);
                 p++;
             });
@@ -60,36 +59,32 @@ function cargarCartelera(ids, element) {
     }
 }
 
-function actulizarIndex() {
-    location.reload();
-}
-
 function actualizar(ref, info, m, n, p) {
 
     //var r = p % m;
     //var c = Math.floor(p / m);
-    if (col === 6) {
+    if (col < 6) {
+        var celda = ref.rows[fil].cells[col];
+        col++;
+    } else {
         fil++;
         col = 0;
-        var celda = ref.rows[fil].cells[col];
-    } else {
         var celda = ref.rows[fil].cells[col];
         col++;
     }
 
+    //var celda = ref.rows[r].cells[c];
+
     var datosFunc = JSON.parse(localStorage.getItem("funciones")).datos_funciones;
-
-
     if (info.id > 0) {
+        console.log(`${p}: ${info.title}`);
         t = `<p>${info.title}</p>`;
         t += `<img src='${posterUrl}${info.poster_path}' `;
         t += `alt='r${info.poster_path}' /><br>`;
         t += `<div class="comboFuncion">`;
         t += `<ul>`;
         for (let i in datosFunc) {
-            console.log(`${datosFunc[i].pelicula_id}`);
             if (datosFunc[i].pelicula_id == info.id) {
-                //t += `<l1><a href="compraTiquetes.jsp" onclick="">${datosFunc[i].fecha} ${"sala "}:  ${datosFunc[i].sala_numero}</a></l1>`;
                 t += `
                     <form action="compraTiquetes.jsp" method="get">
                     <input type="hidden" name="pelicula" value="${datosFunc[i].pelicula_id}" />
@@ -103,13 +98,6 @@ function actualizar(ref, info, m, n, p) {
         t += `</ul>`;
         t += `</div>`;
         celda.innerHTML = t;
-    } else {
-        t = `<img src="css/imagenes/proximamente.jpg">`;
-        t += `<div class="comboFuncion">`;
-        t += `<ul></ul>`;
-        t += `</div>`;
-        t += `<p></p>`;
-        celda.innerHTML = t;
     }
 }
 
@@ -120,4 +108,25 @@ function cargarFuncionLocal() {
 function guardarFuncionLocal(funcion) {
     console.log(`${funcion}`);
     myStorage.setItem('funcionSelecionada', JSON.stringify(funcion));
+}
+
+// Registro de peliculas
+function registrarPelicula() {
+    var datos = new FormData();
+
+    var codigoPelicula = document.getElementById("codigoPelicula").value;
+
+    if (codigoPelicula.length > 1) {
+        var registro = new Pelicula(codigoPelicula);
+        datos.append("pelicula", JSON.stringify(registro));
+
+        getJSON('ServicioRegistroPelicula', datos);
+
+        document.getElementById("codigoPelicula").innerHTML = "";
+    }
+}
+
+function Pelicula(codigoPelicula) {
+    this.codigoPelicula = codigoPelicula;
+
 }
