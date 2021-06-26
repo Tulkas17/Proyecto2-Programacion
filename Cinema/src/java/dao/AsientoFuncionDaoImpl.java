@@ -5,6 +5,8 @@
  */
 package dao;
 
+import static java.lang.System.out;
+import java.net.Authenticator;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -75,7 +77,7 @@ public class AsientoFuncionDaoImpl implements AsientoFuncionDao {
                     asientoFuncion.setFuncion_sala_numero(rs.getInt("funcion_sala_numero"));
 
                     java.sql.Timestamp dateTime = java.sql.Timestamp.valueOf(rs.getString("funcion_fecha"));
-                    asientoFuncion.setFuncion_fecha(dateTime);
+                    asientoFuncion.setFuncion_fecha(rs.getString("funcion_fecha"));
                     asientoFuncion.setFuncion(this.funcionDao.findByDate(dateTime));
                     asientoFuncion.setFila(rs.getString("fila").charAt(0));
                     asientoFuncion.setPosicion(rs.getInt("posicion"));
@@ -106,7 +108,7 @@ public class AsientoFuncionDaoImpl implements AsientoFuncionDao {
                     asientoFuncion.setFuncion_sala_numero(rs.getInt("funcion_sala_numero"));
 
                     java.sql.Timestamp dateTime = java.sql.Timestamp.valueOf(rs.getString("funcion_fecha"));
-                    asientoFuncion.setFuncion_fecha(dateTime);
+                    asientoFuncion.setFuncion_fecha(rs.getString("funcion_fecha"));
                     asientoFuncion.setFuncion(this.funcionDao.findByDate(dateTime));
                     asientoFuncion.setFila(rs.getString("fila").charAt(0));
                     asientoFuncion.setPosicion(rs.getInt("posicion"));
@@ -174,7 +176,7 @@ public class AsientoFuncionDaoImpl implements AsientoFuncionDao {
                     asientoFuncion.setFuncion_sala_numero(rs.getInt("funcion_sala_numero"));
 
                     java.sql.Timestamp dateTime = java.sql.Timestamp.valueOf(rs.getString("funcion_fecha"));
-                    asientoFuncion.setFuncion_fecha(dateTime);
+                    asientoFuncion.setFuncion_fecha(rs.getString("funcion_fecha"));
                     asientoFuncion.setFuncion(this.funcionDao.findByDate(dateTime));
                     asientoFuncion.setFila(rs.getString("fila").charAt(0));
                     asientoFuncion.setPosicion(rs.getInt("posicion"));

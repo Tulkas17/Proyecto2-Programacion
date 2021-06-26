@@ -1,3 +1,5 @@
+var mySessionStorage = window.sessionStorage;
+
 function verificarUsuario() {
     var datos = new FormData();
 
@@ -11,10 +13,11 @@ function verificarUsuario() {
 }
 
 function resultado(usuario) {
-
+    mySessionStorage.setItem("user",usuario);
     if (usuario.result === "ok") {
         if (usuario.rol === 2) {
-            location.href = "index.jsp";
+            location.replace("index.jsp");
+
         } else if (usuario.rol === 1) {
             location.replace("menuAdmin.jsp");
         }

@@ -19,7 +19,7 @@ public class Tiquete implements Serializable {
     int factura_seq;
     int asiento_funcion_sala_cinema;
     int asiento_funcion_sala_numero;
-    Date asiento_funcion_fecha;
+    String asiento_funcion_fecha;
     char asiento_funcion_fila;
     int asiento_funcion_posicion;
     double monto;
@@ -67,11 +67,11 @@ public class Tiquete implements Serializable {
         this.asiento_funcion_sala_numero = asiento_funcion_sala_numero;
     }
 
-    public Date getAsiento_funcion_fecha() {
+    public String getAsiento_funcion_fecha() {
         return asiento_funcion_fecha;
     }
 
-    public void setAsiento_funcion_fecha(Date asiento_funcion_fecha) {
+    public void setAsiento_funcion_fecha(String asiento_funcion_fecha) {
         this.asiento_funcion_fecha = asiento_funcion_fecha;
     }
 

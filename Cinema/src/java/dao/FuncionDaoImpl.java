@@ -59,7 +59,7 @@ public class FuncionDaoImpl implements FuncionDao {
                     funcion.setSala_numero(sala.getNumero());
                     funcion.setSala_cinema_id(sala.getCine().getId_cinema());
                     java.sql.Timestamp dateTime = java.sql.Timestamp.valueOf(rs.getString("fecha"));
-                    funcion.setFecha(dateTime);
+                    funcion.setFecha(rs.getString("fecha"));
                     funcion.setPelicula(pelicula);
                     funcion.setPelicula_id(pelicula.getId_pelicula());
 
@@ -93,7 +93,7 @@ public class FuncionDaoImpl implements FuncionDao {
                     funcion.setSala_numero(sala.getNumero());
                     funcion.setSala_cinema_id(sala.getCine().getId_cinema());
                     java.sql.Timestamp dateTime = java.sql.Timestamp.valueOf(rs.getString("fecha"));
-                    funcion.setFecha(dateTime);
+                    funcion.setFecha(rs.getString("fecha"));
                     funcion.setPelicula(pelicula);
                     funcion.setPelicula_id(pelicula.getId_pelicula());
                     funcionList.add(funcion);
@@ -128,7 +128,7 @@ public class FuncionDaoImpl implements FuncionDao {
                     funcion.setSala_numero(sala.getNumero());
                     funcion.setSala_cinema_id(sala.getCine().getId_cinema());
                     java.sql.Timestamp dateTime = java.sql.Timestamp.valueOf(rs.getString("fecha"));
-                    funcion.setFecha(dateTime);
+                    funcion.setFecha(rs.getString("fecha"));
                     funcion.setPelicula(pelicula);
                     funcion.setPelicula_id(pelicula.getId_pelicula());
                     funcionList.add(funcion);
@@ -163,7 +163,7 @@ public class FuncionDaoImpl implements FuncionDao {
                     funcion.setSala_numero(sala.getNumero());
                     funcion.setSala_cinema_id(sala.getCine().getId_cinema());
                     java.sql.Timestamp dateTime = java.sql.Timestamp.valueOf(rs.getString("fecha"));
-                    funcion.setFecha(dateTime);
+                    funcion.setFecha(rs.getString("fecha"));
                     funcion.setPelicula(pelicula);
                     funcion.setPelicula_id(pelicula.getId_pelicula());
                     funcionList.add(funcion);
@@ -193,7 +193,7 @@ public class FuncionDaoImpl implements FuncionDao {
                     funcion.setSala_numero(sala.getNumero());
                     funcion.setSala_cinema_id(sala.getCine().getId_cinema());
                     java.sql.Timestamp dateTime = java.sql.Timestamp.valueOf(rs.getString("fecha"));
-                    funcion.setFecha(dateTime);
+                    funcion.setFecha(rs.getString("fecha"));
                     funcion.setPelicula(pelicula);
                     funcion.setPelicula_id(pelicula.getId_pelicula());
                     funcionList.add(funcion);
@@ -209,7 +209,7 @@ public class FuncionDaoImpl implements FuncionDao {
     public Funcion save(Funcion funcion) throws SQLException {
     String fechaAux ="2016-11-19 10:38:47.0";
         String sql = "INSERT INTO bd_cine.funcion (sala_cinema_id, sala_numero, fecha, pelicula_id)  VALUES "
-                + "(" + funcion.getSala().getCine().getId_cinema() + "," + funcion.getSala().getNumero()
+                + "(" + funcion.getSala_cinema_id() + "," + funcion.getSala_numero()
                 + " ,'" + funcion.getFecha() + "','"
                 + funcion.getPelicula().getId_pelicula() + "' );";
   System.out.println(sql);

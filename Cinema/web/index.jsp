@@ -4,6 +4,7 @@
     Author     : roger
 --%>
 
+<%@ page import='modelo.Usuario' %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -20,14 +21,17 @@
     </head>
     <body onload="init();" class="bodyC">
         <%
-            session = request.getSession();
-            if (session.getAttribute("id_usuario") != null && session.getAttribute("rol") == "1") {%>
-        <jsp:directive.include file="headerSesionActivaAdmin.jsp" />
-        <%} else if (session.getAttribute("id_usuario") != null) {%>
-        <jsp:directive.include file="headerSesionActiva.jsp" />
-        <%} else {%>
-        <jsp:directive.include file="header.jsp" />
-        <%}%>
+            HttpSession sesionActual = request.getSession(true);
+            Usuario usuario = (Usuario)sesionActual.getAttribute("usuario");
+            
+            if (usuario == null) {%>
+            <jsp:directive.include file="header.jsp" />
+        <%}else if (usuario != null) { 
+           if(usuario.getRol() == 1){%>
+            <jsp:directive.include file="headerSesionActivaAdmin.jsp" />
+        <%} else if (usuario.getRol() == 2) {%>
+            <jsp:directive.include file="headerSesionActiva.jsp" />
+        <%}}%>
         <jsp:directive.include file="headerAnuncio.jsp" />
         <section>
             <div class="wrapperC">

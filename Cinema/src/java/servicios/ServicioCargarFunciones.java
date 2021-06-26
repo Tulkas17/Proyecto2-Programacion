@@ -6,6 +6,8 @@
 package servicios;
 
 import com.google.gson.JsonSyntaxException;
+import dao.CineDao;
+import dao.CineDaoImpl;
 import dao.FuncionDao;
 import dao.FuncionDaoImpl;
 import dao.PeliculaDao;
@@ -25,6 +27,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Cine;
 import modelo.Funcion;
 import modelo.Pelicula;
 import org.json.JSONArray;
@@ -52,6 +55,8 @@ public class ServicioCargarFunciones extends HttpServlet {
             try {
 
                 FuncionDao funcDao = new FuncionDaoImpl();
+                Cine cine = new Cine();
+                CineDao cineDao = new CineDaoImpl();
                 List<Funcion> funciones = funcDao.findAll();
 
                 JSONObject o = new JSONObject();
@@ -60,7 +65,9 @@ public class ServicioCargarFunciones extends HttpServlet {
 
                 for (int i = 0; i < funciones.size(); i++) {
                     e = new JSONObject();
-                    e.put("sala_cinema_id", funciones.get(i).getSala_cinema_id());
+                    cine = cineDao.findById(funciones.get(i).getSala_cinema_id());
+                    e.put("sala_cinema_id", cine.getId_cinema());
+                    e.put("sala_cinema_direccion", cine.getDireccion());
                     e.put("sala_numero", funciones.get(i).getSala_numero());
                     e.put("fecha", funciones.get(i).getFecha());
                     e.put("pelicula_id", funciones.get(i).getPelicula_id());

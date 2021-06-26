@@ -87,7 +87,7 @@ footer {
 .formLogin table th,
 .formLogin table td {
     border: none;
-    border-bottom: 1px solid gray;
+    border-bottom: 0px solid gray;
     font-family: OpenSans;
     font-size: 12pt;
     padding: 16px;

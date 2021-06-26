@@ -59,7 +59,7 @@ public class TiqueteDaoImpl implements TiqueteDao {
                     tiquete.setAsiento_funcion_fila(rs.getString("asiento_funcion_fila").charAt(0));
                     tiquete.setAsiento_funcion_posicion(rs.getInt("asiento_funcion_posicion"));
                     java.sql.Timestamp dateTime = java.sql.Timestamp.valueOf(rs.getString("asiento_funcion_fecha"));
-                    tiquete.setAsiento_funcion_fecha(dateTime);
+                    tiquete.setAsiento_funcion_fecha(rs.getString("asiento_funcion_fecha"));
                     tiquete.setAsiento_funcion_sala_cinema(rs.getInt("asiento_funcion_sala_cinema_id"));
                     tiquete.setAsiento_funcion_sala_numero(rs.getInt("asiento_funcion_sala_numero"));
                     tiquete.setId_tiquete(rs.getInt("id_tiquete"));
@@ -99,7 +99,7 @@ public class TiqueteDaoImpl implements TiqueteDao {
                     tiquete.setAsiento_funcion_fila(rs.getString("asiento_funcion_fila").charAt(0));
                     tiquete.setAsiento_funcion_posicion(rs.getInt("asiento_funcion_posicion"));
                     java.sql.Timestamp dateTime = java.sql.Timestamp.valueOf(rs.getString("asiento_funcion_fecha"));
-                    tiquete.setAsiento_funcion_fecha(dateTime);
+                    tiquete.setAsiento_funcion_fecha(rs.getString("asiento_funcion_fecha"));
                     tiquete.setAsiento_funcion_sala_cinema(rs.getInt("asiento_funcion_sala_cinema_id"));
                     tiquete.setAsiento_funcion_sala_numero(rs.getInt("asiento_funcion_sala_numero"));
                     tiquete.setId_tiquete(rs.getInt("id_tiquete"));
@@ -132,7 +132,7 @@ public class TiqueteDaoImpl implements TiqueteDao {
                     tiquete.setAsiento_funcion_fila(rs.getString("asiento_funcion_fila").charAt(0));
                     tiquete.setAsiento_funcion_posicion(rs.getInt("asiento_funcion_posicion"));
                     java.sql.Timestamp dateTime = java.sql.Timestamp.valueOf(rs.getString("asiento_funcion_fecha"));
-                    tiquete.setAsiento_funcion_fecha(dateTime);
+                    tiquete.setAsiento_funcion_fecha(rs.getString("asiento_funcion_fecha"));
                     tiquete.setAsiento_funcion_sala_cinema(rs.getInt("asiento_funcion_sala_cinema_id"));
                     tiquete.setAsiento_funcion_sala_numero(rs.getInt("asiento_funcion_sala_numero"));
                     tiquete.setId_tiquete(rs.getInt("id_tiquete"));

@@ -17,12 +17,12 @@ public class Funcion implements Serializable {
 
     int sala_cinema_id;
     int sala_numero;
-    Date fecha;
+    String fecha;
     String pelicula_id;
     Sala sala;
     Pelicula pelicula;
 
-    public Funcion(Date fecha, Sala sala, Pelicula pelicula) {
+    public Funcion(String fecha, Sala sala, Pelicula pelicula) {
         this.fecha = fecha;
         this.sala = sala;
         this.pelicula = pelicula;
@@ -53,11 +53,11 @@ public class Funcion implements Serializable {
         this.sala_numero = sala_numero;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 

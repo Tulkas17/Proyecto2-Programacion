@@ -15,18 +15,26 @@
         <title>JSP Page</title>
     </head>
     <body style="background-color: #333333;">
-        <jsp:directive.include file="headerSesionActiva.jsp" />
+        <jsp:directive.include file="headerSesionActivaAdmin.jsp" />
         <jsp:directive.include file="headerAnuncio.jsp" />
         <div id="wrapper">
-            <div id="contents">
-                <form class="formPelicula">
-                    <h1>Registro de peliculas</h1>
-                    <p style="color: white;font-size: 17px;opacity: 50%;text-align: center;">
-                        (Ingresar codigo de provisto por www.themoviedb.org)</p>
-                    <label style="color:white;">Codigo:  </label>
-                    <input type="text" id="codigoPelicula" name="codigoPelicula"><br><br>
-                    <button style="margin-left: 50%;margin-right: 50%;" class="botonPeli" type="button" onclick="registrarPelicula();">Registrar</button>
-                </form>
+            <div id="wrapper">
+                <div id="contents">
+                    <form class="formPelicula">
+                        <h1>Registro de peliculas</h1>
+                        <p style="color: white;font-size: 17px;opacity: 50%;text-align: center;">
+                            (Ingresar codigo de provisto por www.themoviedb.org)</p>
+                        <label style="color:white;">Codigo:  </label>
+                        <input type="text" id="codigoPelicula" name="codigoPelicula"><br><br>
+                        <button style="margin-left: 50%;margin-right: 50%;" class="botonPeli" type="button" onclick="registrarPelicula();">Registrar</button>
+                    </form>
+                </div>
+            </div>
+            <div>
+                <jsp:directive.include file="registroSala.jsp" />
+            </div>
+            <div>
+                <jsp:directive.include file="registrarFuncion.jsp" />
             </div>
         </div>
         <jsp:directive.include file="footer.jsp" />

@@ -16,11 +16,11 @@ import org.json.JSONObject;
 public class Factura implements Serializable {
 
     int seq_factura;
-    Date fecha;
+    String fecha;
     Cliente cliente;
     String tarjeta_pago;
 
-    public Factura(int seq_factura, Date fecha, Cliente cliente) {
+    public Factura(int seq_factura, String fecha, Cliente cliente) {
         this.seq_factura = seq_factura;
         this.fecha = fecha;
         this.cliente = cliente;
@@ -47,11 +47,11 @@ public class Factura implements Serializable {
         this.seq_factura = seq_factura;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 

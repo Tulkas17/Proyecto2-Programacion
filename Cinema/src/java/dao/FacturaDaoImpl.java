@@ -51,7 +51,7 @@ public class FacturaDaoImpl implements FacturaDao {
                     factura.setSeq_factura(rs.getInt("seq_factura"));
                     factura.setCliente(cliente);
                     java.sql.Timestamp dateTime = java.sql.Timestamp.valueOf(rs.getString("fecha"));
-                    factura.setFecha(dateTime);
+                    factura.setFecha(rs.getString("fecha"));
                     factura.setTarjeta_pago(rs.getString("tarjeta_pago"));
 
                 }
@@ -82,7 +82,7 @@ public class FacturaDaoImpl implements FacturaDao {
                     factura.setSeq_factura(rs.getInt("seq_factura"));
                     factura.setCliente(cliente);
                     java.sql.Timestamp dateTime = java.sql.Timestamp.valueOf(rs.getString("fecha"));
-                    factura.setFecha(dateTime);
+                    factura.setFecha(rs.getString("fecha"));
                      factura.setTarjeta_pago(rs.getString("tarjeta_pago"));
                     facturaList.add(factura);
                 }
@@ -112,7 +112,7 @@ public class FacturaDaoImpl implements FacturaDao {
                     factura.setSeq_factura(rs.getInt("seq_factura"));
                     factura.setCliente(cliente);
                     java.sql.Timestamp dateTime = java.sql.Timestamp.valueOf(rs.getString("fecha"));
-                    factura.setFecha(dateTime);
+                    factura.setFecha(rs.getString("fecha"));
                     factura.setTarjeta_pago(rs.getString("tarjeta_pago"));
 
                 }
@@ -188,7 +188,7 @@ System.out.println(sql);
                     factura.setSeq_factura(rs.getInt("seq_factura"));
                     factura.setCliente(cliente);
                     java.sql.Timestamp dateTime = java.sql.Timestamp.valueOf(rs.getString("fecha"));
-                    factura.setFecha(dateTime);
+                    factura.setFecha(rs.getString("fecha"));
                      factura.setTarjeta_pago(rs.getString("tarjeta_pago"));
                     facturaList.add(factura);
                 }

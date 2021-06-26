@@ -17,7 +17,7 @@ public class Asiento_funcion implements Serializable {
 
     int funcion_sala_cinema_id;
     int funcion_sala_numero;
-    Date funcion_fecha;
+    String funcion_fecha;
     char fila;
     int posicion;
     boolean ocupado;
@@ -52,11 +52,11 @@ public class Asiento_funcion implements Serializable {
         this.funcion_sala_numero = funcion_sala_numero;
     }
 
-    public Date getFuncion_fecha() {
+    public String getFuncion_fecha() {
         return funcion_fecha;
     }
 
-    public void setFuncion_fecha(Date funcion_fecha) {
+    public void setFuncion_fecha(String funcion_fecha) {
         this.funcion_fecha = funcion_fecha;
     }
 

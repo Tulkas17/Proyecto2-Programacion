@@ -60,9 +60,6 @@ function cargarCartelera(ids, element) {
 }
 
 function actualizar(ref, info, m, n, p) {
-
-    //var r = p % m;
-    //var c = Math.floor(p / m);
     if (col < 6) {
         var celda = ref.rows[fil].cells[col];
         col++;
@@ -90,11 +87,16 @@ function actualizar(ref, info, m, n, p) {
                     <input type="hidden" name="pelicula" value="${datosFunc[i].pelicula_id}" />
                     <input type="hidden" name="fecha" value="${datosFunc[i].fecha}" />
                     <input type="hidden" name="numero" value="${datosFunc[i].sala_numero}" />
+                    <input type="hidden" name="sala_cinema_id" value="${datosFunc[i].sala_cinema_id}" />
+                    <input type="hidden" name="sala_cinema_direccion" value="${datosFunc[i].sala_cinema_direccion}" />
                     <input type="submit" value="${datosFunc[i].fecha} ${"sala "}:  ${datosFunc[i].sala_numero}" />
                    </form>
                     `;
+                console.log(datosFunc[i].sala_cinema_direccion);
             }
+            
         }
+
         t += `</ul>`;
         t += `</div>`;
         celda.innerHTML = t;
@@ -122,11 +124,18 @@ function registrarPelicula() {
 
         getJSON('ServicioRegistroPelicula', datos);
 
-        document.getElementById("codigoPelicula").innerHTML = "";
+        document.getElementById("codigoPelicula").value = "";
+        alert("Pelicula resgistrada con exito en la base de datos");
     }
 }
 
 function Pelicula(codigoPelicula) {
     this.codigoPelicula = codigoPelicula;
 
+}
+
+function guardar(pelicula, fecha, numero) {
+    myStorage.setItem("pelicula", pelicula);
+    myStorage.setItem("fecha", fecha);
+    myStorage.setItem("numero", numero);
 }

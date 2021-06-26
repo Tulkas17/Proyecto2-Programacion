@@ -6,13 +6,16 @@
 package servicios;
 
 import com.google.gson.JsonSyntaxException;
-import dao.UsuarioDao;
-import dao.UsuarioDaoImpl;
+import dao.AsientoFuncionDao;
+import dao.AsientoFuncionDaoImpl;
+import dao.AsientoSalaDao;
+import dao.AsientoSalaDaoImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,8 +25,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import modelo.Usuario;
+import modelo.Asiento_funcion;
+import modelo.Asiento_sala;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -31,10 +35,11 @@ import org.json.JSONObject;
  *
  * @author oscar
  */
-@WebServlet(name = "ServicioLogin", urlPatterns = {"/ServicioLogin"})
+@WebServlet(name = "ServicioCargarAsientos", urlPatterns = {"/ServicioCargarAsientos"})
 @MultipartConfig
-public class ServicioLogin extends HttpServlet {
+public class ServicioCargarAsientos extends HttpServlet {
 
+    private Optional<String> encoding;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
@@ -42,49 +47,40 @@ public class ServicioLogin extends HttpServlet {
         request.setCharacterEncoding(StandardCharsets.UTF_8.toString());
         encoding = Optional.of(request.getCharacterEncoding());
         response.setContentType("application/json;charset=UTF-8");
-        JSONObject resultado = new JSONObject();
 
         try (PrintWriter out = response.getWriter()) {
-            StringBuilder r = new StringBuilder();
-
             try {
 
-                UsuarioDao userDao = new UsuarioDaoImpl();
+                AsientoFuncionDao asiDao = new AsientoFuncionDaoImpl();
+                List<Asiento_funcion> asientos = asiDao.findAll();
 
-                JSONObject obj = new JSONObject(toUTF8String(request.getParameter("user")));
-                
-                Usuario u = new Usuario(
-                        obj.getString("id_cliente"),
-                        obj.getString("clave"),
-                        2
-                );
+                JSONObject o = new JSONObject();
+                JSONObject e = null;
+                JSONArray r = new JSONArray();
 
-                int respuesta = userDao.validar(u);
-                
-                if(respuesta == 1){
-                    u = userDao.findById(obj.getString("id_cliente"));
-                    HttpSession session = request.getSession(true);
-                    session.setAttribute("usuario", u);
-                    //session.setAttribute("rol", u.getRol());
-                    resultado.put("result", "ok");
-                    //resultado.put("id_usuario", u.getId_usuario());
-                    resultado.put("rol", u.getRol());
-                    resultado.put("id_usuario", u.getId_usuario());
+                for (int i = 0; i < asientos.size(); i++) {
+                    e = new JSONObject();
+                    e.put("fila", asientos.get(i).getFila());
+                    e.put("columna", asientos.get(i).getPosicion());
+                    e.put("ocupado", asientos.get(i).getOcupado());
+                    e.put("funcion_fecha",asientos.get(i).getFuncion_fecha());
+                    e.put("funcion_sala_cinema_id",asientos.get(i).getFuncion_sala_cinema_id());
+                    e.put("funcion_sala_numero",asientos.get(i).getFuncion_sala_numero());
+                    r.put(e);
                 }
-                else{
-                    resultado.put("result", "bad");
-                }
+
+                o.put("datos_asientos", r);
+                out.println(o);
 
             } catch (JsonSyntaxException
-                    | UnsupportedEncodingException
                     | NumberFormatException
                     | JSONException ex) {
             }
-            out.println(resultado);
+
         }
 
     }
-    
+
     private String toUTF8String(String s) throws UnsupportedEncodingException {
         return encoding.isPresent() ? s : new String(s.getBytes(), StandardCharsets.UTF_8);
     }
@@ -104,7 +100,7 @@ public class ServicioLogin extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(ServicioLogin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServicioCargarAsientos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -122,7 +118,7 @@ public class ServicioLogin extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(ServicioLogin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServicioCargarAsientos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -135,7 +131,5 @@ public class ServicioLogin extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-    
-    private Optional<String> encoding;
 
 }
