@@ -32,7 +32,7 @@ function Asiento(funcion_sala_cinema_id, funcion_sala_numero, funcion_fecha, fil
     this.ocupado = ocupado;
 }
 
-function Factura(id_cliente, fecha, pelicula, numero, sala_cinema_id, posiciones){
+function Factura(id_cliente, fecha, pelicula, numero, sala_cinema_id, posiciones) {
     this.id_cliente = id_cliente;
     this.fecha = fecha;
     this.pelicula = pelicula;
@@ -123,7 +123,7 @@ function cargarAsientos(datos) {
     console.log(datos);
     datos.forEach(ele => {
         //console.log(myStorage.getItem('numero') + " : " + ele.funcion_sala_numero + " y " + myStorage.getItem('fecha') + " : " + ele.funcion_fecha);
-        if (myStorage.getItem('numero')== ele.funcion_sala_numero
+        if (myStorage.getItem('numero') == ele.funcion_sala_numero
                 && myStorage.getItem('fecha') == ele.funcion_fecha) {
             //console.log("aqui se creo 1");
             posicionesCargadas.push(new Asiento(
@@ -200,6 +200,7 @@ function registraAsiento() {
 
 function construirTablero(t) {
     var refSeccion = document.getElementById('seccionTabla');
+    refSeccion.innerHTML ="";
     //comparar elemento de funcion con asinetos
 
     if (refSeccion) {
@@ -236,8 +237,8 @@ function construirTablero(t) {
                 btn.innerHTML = '<div  id="seat" class="seat"></div>';
 
                 posicionesCargadas.forEach(ele => {
-                    console.log(i + " : " + (ele.fila-48) + " y " + j + " : " + ele.columna);
-                    if (i == (ele.fila-48) && j == ele.columna) {
+                    console.log(i + " : " + (ele.fila - 48) + " y " + j + " : " + ele.columna);
+                    if (i == (ele.fila - 48) && j == ele.columna) {
                         console.log("aqui estoy");
                         btn.innerHTML = '<div id="seat" class="seat occupied"></div>';
                     }
@@ -270,10 +271,10 @@ function construirTablero(t) {
     }
 }
 
-function obtenerFecha(){
+function obtenerFecha() {
     var fecha = hoy.getFullYear() + '-' + (hoy.getMonth() + 1) + '-' + hoy.getDate();
     var hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
-    
+
     return (fecha + " " + hora);
 }
 
@@ -304,57 +305,62 @@ function removeDuplicates(data) {
     return result;
 }
 
-function comprar(fecha, pelicula, numero, sala_cinema_id, id_cliente) {
-    console.log(fecha + " " + pelicula + " " + numero, +" " + sala_cinema_id, + " " + id_cliente);
+function comprar(fecha, pelicula, numero, sala_cinema_id, id_cliente, id_rol) {
+    console.log(fecha + " " + pelicula + " " + numero, +" " + sala_cinema_id, +" " + id_cliente);
     if (id_cliente !== "noUsuario") {
-        console.log("ejecutando");
-        posicionesFinal.push(posiciones);
+        if(id_rol == 1){
+            window.alert("Los administradores no pueden comprar tiquetes");
+        }
+        if (id_rol == 2) {
+            console.log(id_rol);
+            posicionesFinal.push(posiciones);
 
-        var count = 0;
-        var seats = document.getElementsByClassName("seat");
-        for (var i = 0; i < seats.length; i++) {
-            var item = seats[i];
+            var count = 0;
+            var seats = document.getElementsByClassName("seat");
+            for (var i = 0; i < seats.length; i++) {
+                var item = seats[i];
 
-            if (item.classList.contains('selected')) {
-                count++;
-                item.classList.add("occupied");
+                if (item.classList.contains('selected')) {
+                    count++;
+                    item.classList.add("occupied");
+                }
+
             }
 
-        }
+            var total = count * 3500;
+            var data = new FormData();
 
-        var total = count * 3500;
-        var data = new FormData();
+            var factura = new Factura(id_cliente, fecha, pelicula, numero, sala_cinema_id, posiciones);
+            data.append("factura", JSON.stringify(factura));
 
-        var factura = new Factura(id_cliente, fecha, pelicula, numero, sala_cinema_id, posiciones);
-        data.append("factura", JSON.stringify(factura));
-
-        getJSON('ServicioAgregarFactura', data, mostrarResultados);
-        //crear asiento funcion 
+            getJSON('ServicioAgregarFactura', data, mostrarResultados);
+            //crear asiento funcion 
 //    var datos = new FormData();
 //    posicionesFinal.forEach(Asiento => {
 //        datos.append("asientoR", JSON.stringify(Asiento[0]));
 //        getJSON('ServicioRegistroAsiento', datos);
 //    });
-        //crear  tiquete  
-        /* int id_tiquete , 
-         int factura_seq, 
-         int asiento_funcion_sala_cinema, 
-         int asiento_funcion_sala_numero,
-         Date asiento_funcion_fecha, 
-         int asiento_funcion_fila, 
-         int asiento_funcion_columna,
-         double monto 3500*/
+            //crear  tiquete  
+            /* int id_tiquete , 
+             int factura_seq, 
+             int asiento_funcion_sala_cinema, 
+             int asiento_funcion_sala_numero,
+             Date asiento_funcion_fecha, 
+             int asiento_funcion_fila, 
+             int asiento_funcion_columna,
+             double monto 3500*/
 
 
-        //crear   factura 
+            //crear   factura 
 
-        /* int seq_factura-->??;lista de tiquetes guarar un lista de compras 
-         Date fecha->del dia buscar proyecto 1;
-         String cliente_id;->listarCliente
-         String tarjeta_pago;->listarCliente 
-         int total;->count????*/
+            /* int seq_factura-->??;lista de tiquetes guarar un lista de compras 
+             Date fecha->del dia buscar proyecto 1;
+             String cliente_id;->listarCliente
+             String tarjeta_pago;->listarCliente 
+             int total;->count????*/
 
-        //recargar la vara    
+            //recargar la vara    
+        }
     }
 }
 

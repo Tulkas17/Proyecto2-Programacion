@@ -1,0 +1,75 @@
+
+body {
+}
+
+#wrapper {
+    font: 12pt sans-serif;
+}
+
+section {
+    border-bottom: 1px dotted gray;
+    margin: 8px;
+    padding: 8px;
+}
+
+.tablaPoblacion {
+    border: 2px solid black;
+    border-top-width: 1px;
+    border-collapse: collapse;
+    margin: 8px 8px 8px 64px;
+    font-size: 10pt;
+}
+
+.tablaPoblacion caption {
+    background-color: darkslateblue;
+    border: 2px solid black;
+    border-bottom-width: 1px;
+    color: white;
+    font-weight: bold;
+    padding: 4px 24px 4px 24px;
+}
+
+.tablaPoblacion thead {
+    background-color: lightsteelblue;
+}
+
+.tablaPoblacion tbody tr:nth-child(even) {
+    background-color: #e5eaff;
+}
+
+.tablaPoblacion th,
+.tablaPoblacion td {
+    border: 1px solid black;
+    padding: 2px 16px 2px 16px;
+}
+
+.tablaPoblacion .d1 { 
+    text-align: center; 
+}
+
+.tablaPoblacion .d2 {
+    text-align: left;
+}
+
+.tablaPoblacion .d3 {
+    padding-left: 24px;
+    text-align: right;
+}
+
+.tablaPoblacion  .d4 {
+    padding-left: 12px;
+    padding-right: 12px; 
+    text-align: right; 
+}
+
+.tablaPoblacion .p2 {
+    background-color: lightsteelblue;
+    font-weight: bold;
+    padding-left: 24px;
+}
+
+.tablaPoblacion .p3 {
+    background-color: lightsteelblue;
+    font-weight: bold;
+    padding-left: 24px;
+}

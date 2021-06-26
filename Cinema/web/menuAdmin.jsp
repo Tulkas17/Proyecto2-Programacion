@@ -36,6 +36,9 @@
             <div>
                 <jsp:directive.include file="registrarFuncion.jsp" />
             </div>
+            <div>
+                <jsp:directive.include file="tablaFacturas.jsp" />
+            </div>
         </div>
         <jsp:directive.include file="footer.jsp" />
     </body>

@@ -37,8 +37,10 @@
             HttpSession sesionActual = request.getSession(true);
             Usuario usuario = (Usuario)sesionActual.getAttribute("usuario");
             String id_cliente = "noUsuario";
+            int id_rol = 0;
             if(usuario != null){
             id_cliente = usuario.getId_usuario();
+            id_rol = usuario.getRol();
             }
             if (usuario == null) {%>
             <jsp:directive.include file="header.jsp" />
@@ -152,8 +154,8 @@
 
                 <section> 
                     <hr />
-                    <button onclick="window.location.href = 'compraTiquetes.jsp'">Borrar Selecionados</button>
-                    <button type="button" onclick="comprar('<%=fecha%>','<%=pelicula%>','<%=numero%>','<%=sala_cinema_id%>','<%=id_cliente%>');" >Comprar</button>  
+                    <button type="button" onclick="recargarAsientos();">Borrar Selecionados</button>
+                    <button type="button" onclick="comprar('<%=fecha%>','<%=pelicula%>','<%=numero%>','<%=sala_cinema_id%>','<%=id_cliente%>','<%=id_rol%>');" >Comprar</button>  
                     <%
                         if (usuario != null) {
                         } else { %>                        
