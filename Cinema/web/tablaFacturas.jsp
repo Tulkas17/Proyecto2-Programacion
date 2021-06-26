@@ -17,6 +17,8 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <jsp:directive.include file="headerSesionActivaAdmin.jsp" />
+        <jsp:directive.include file="headerAnuncio.jsp" />
         <div id="wrapper">
             <div id="contents">
                 <div id="contents" >            
@@ -49,5 +51,6 @@
             </div>
             </div>
         </div>
+        <jsp:directive.include file="footer.jsp" />
     </body>
 </html>

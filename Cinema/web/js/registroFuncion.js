@@ -6,7 +6,7 @@ var cineSeleccionado = null;
 var peliculaSeleccionada = null;
 var salaSeleccionada = null;
 
-function init() {
+function initFuncion() {
 
     actualizarMenuSala();
     actualizarMenuPelicula();
@@ -161,6 +161,11 @@ function registrarFuncion() {
     var Registrofuncion = new Funcion(sala_numero, fecha, pelicula_id);
     datos.append("funcion", JSON.stringify(Registrofuncion));
     getJSON('ServicioRegistroFuncion', datos);
+    
+    document.getElementById("date").value = "";
+    document.getElementById("menuSalas").value = "";
+    document.getElementById("menuPeliculas").value = "";
+    alert("Funcion resgistrada con exito en la base de datos");
 
     //location.replace("index.jsp");
 }

@@ -7,7 +7,7 @@
 var catalogo = null; // Mantiene el inventario de productos disponible.
 var cineSeleccionado = null;
 
-function init() {
+function initSala() {
 
 
     actualizarMenu();
@@ -100,7 +100,11 @@ function registrarSala() {
 
     getJSON('ServicioSala', datos);
 
-     //location.replace("index.jsp");
+    document.getElementById("numero").value = "";
+    document.getElementById("capacidad").value = "";
+    document.getElementById("menuCines").value = "";
+    alert("Sala resgistrada con exito en la base de datos");
+
 }
 
 function Sala(numero, capacidad, cinema_id) {

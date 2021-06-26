@@ -22,7 +22,9 @@
             inicializarDatos(<%= new ServicioSala().listaCinesJSON()%>);
         </script>
     </head>
-    <body onload="init();">
+    <body onload="initSala();">
+        <jsp:directive.include file="headerSesionActivaAdmin.jsp" />
+        <jsp:directive.include file="headerAnuncio.jsp" />
         <section>
             <div id="wrapper">
                 <div id ="contents">
@@ -69,5 +71,6 @@
                 </div>
             </div>
         </section>
+        <jsp:directive.include file="footer.jsp" />
     </body>
 </html>
