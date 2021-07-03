@@ -32,6 +32,9 @@
         <%} else if (usuario.getRol() == 2) {%>
             <jsp:directive.include file="headerSesionActiva.jsp" />
         <%}}%>
+
+        
+
         <jsp:directive.include file="headerAnuncio.jsp" />
         <section>
             <div class="wrapperC">

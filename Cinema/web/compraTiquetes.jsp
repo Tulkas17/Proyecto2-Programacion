@@ -103,51 +103,7 @@
                         out.println("(No se ha iniciado la sesión.)");
                         out.println("</strong></p>");
                 %>
-                <table style="color: white;">
-                    <tbody>
-                        <tr>
-                        <tr>
-                            <td class="etiqueta">Id persona:&nbsp;</td>
-                            <td class="campo">  
-                                <input type="number"  
-                                       id="id" 
-                                       name="id"
-                                       placeholder="Id persona"
-                                       required="on" />
-                            </td>
-                        </tr>
-                        </td>
-                        <tr>
-                            <td class="etiqueta">Apellido(s):&nbsp;</td>
-                            <td class="campo"> 
-                                <input id="apellidos" name="apellidos" required="on"
-                                       placeholder="apellidos(s)"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="etiqueta">Nombre(s):&nbsp;</td>
-                            <td class="campo">
-                                <input id="nombre" name="nombre" required="on"
-                                       placeholder="nombre(s)"/> 
-                            </td>
-                        </tr>   
-                        <tr>
-                            <td class="etiqueta">Telefono:&nbsp;</td>
-                            <td class="campo">
-                                <input id="telefono" name="telefono" required="on"
-                                       placeholder="telefono"/> 
-                            </td>
-                        </tr>  
-
-                        <tr>
-                            <td class="etiqueta">Tarjeta de Pago:&nbsp;</td>
-                            <td class="campo">
-                                <input id="tarjeta_pago" name="tarjeta_pago" required="on"
-                                       placeholder="Tarjeta de pago"/> 
-                            </td>
-                        </tr> 
-                    </tbody>
-                </table>
+                
                 <%   }
                 %>
 

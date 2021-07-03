@@ -307,7 +307,7 @@ function removeDuplicates(data) {
 
 function comprar(fecha, pelicula, numero, sala_cinema_id, id_cliente, id_rol) {
     console.log(fecha + " " + pelicula + " " + numero, +" " + sala_cinema_id, +" " + id_cliente);
-    if (id_cliente !== "noUsuario") {
+    if (id_cliente !== "noUsuario"){
         if(id_rol == 1){
             window.alert("Los administradores no pueden comprar tiquetes");
         }
@@ -333,34 +333,10 @@ function comprar(fecha, pelicula, numero, sala_cinema_id, id_cliente, id_rol) {
             var factura = new Factura(id_cliente, fecha, pelicula, numero, sala_cinema_id, posiciones);
             data.append("factura", JSON.stringify(factura));
 
-            getJSON('ServicioAgregarFactura', data, mostrarResultados);
-            //crear asiento funcion 
-//    var datos = new FormData();
-//    posicionesFinal.forEach(Asiento => {
-//        datos.append("asientoR", JSON.stringify(Asiento[0]));
-//        getJSON('ServicioRegistroAsiento', datos);
-//    });
-            //crear  tiquete  
-            /* int id_tiquete , 
-             int factura_seq, 
-             int asiento_funcion_sala_cinema, 
-             int asiento_funcion_sala_numero,
-             Date asiento_funcion_fecha, 
-             int asiento_funcion_fila, 
-             int asiento_funcion_columna,
-             double monto 3500*/
-
-
-            //crear   factura 
-
-            /* int seq_factura-->??;lista de tiquetes guarar un lista de compras 
-             Date fecha->del dia buscar proyecto 1;
-             String cliente_id;->listarCliente
-             String tarjeta_pago;->listarCliente 
-             int total;->count????*/
-
-            //recargar la vara    
+            getJSON('ServicioAgregarFactura', data, mostrarResultados);   
         }
+    }else if(id_cliente == "OnoUsuario") {
+         window.alert("No se ha iniciad sesion");
     }
 }
 
