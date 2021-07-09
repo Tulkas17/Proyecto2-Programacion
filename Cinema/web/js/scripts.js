@@ -1,6 +1,3 @@
-function busquedaPelicula() {
-
-}
 
 var dimensionTabla = {filas: 4, columnas: 6};
 var posterUrl = "https://www.themoviedb.org/t/p/w1280";

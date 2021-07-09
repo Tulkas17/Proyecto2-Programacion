@@ -22,6 +22,12 @@ function init() {
     recargarFuncion();
 }
 
+function busquedaPelicula() {
+    var movie_id = document.getElementById("busquedaPelicula").value;
+    
+    
+}
+
 function Asiento(funcion_sala_cinema_id, funcion_sala_numero, funcion_fecha, fila, columna, ocupado) {
 
     this.funcion_sala_cinema_id = funcion_sala_cinema_id;
